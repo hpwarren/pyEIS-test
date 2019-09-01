@@ -50,15 +50,15 @@ fit = eis_fit_raster(wave, ints, errs, template, parinfo)
 # plot raster and fit
 x_scale  = raster.data['pointing']['x_scale']
 date_obs = raster.data['index']['date_obs']
-IMGnx    = x_scale*ints.shape[1]/50.
-IMGny    = ints.shape[0]/50.
+IMGnx    = x_scale*ints.shape[1]/70.
+IMGny    = ints.shape[0]/70.
 # raster
 raster   = np.sum(ints, axis=2)
 range    = np.percentile(raster, (1, 99))
 range    = range[1]*np.array([1.0E-2, 1.0])
 scaled   = np.log10(np.clip(raster, range[0], range[1]))
 
-plt.figure(figsize=(IMGnx, IMGny))
+plt.figure(figsize=(2*IMGnx, IMGny))
 plt.subplot(121)
 plt.imshow(scaled, origin='lower', aspect=1/x_scale, cmap='gray')
 plt.title(date_obs)
