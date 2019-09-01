@@ -15,6 +15,13 @@ There are currently three subdirectories
   displaying the data. Routines for fitting the data using a port of MPFIT to python are also
   here. Anaconda and Python 3.7 is assumed.
   
+  * pyEIS-test/2-pyEIS/data containes `eis_20190404_131513.data.h5.gz` and
+    `eis_20190404_131513.head.h5`; gunzip the data file
+  * there are example routines (e.g., `ex_eis_display_window.py`)
+  * `eis_read_raster.py`: is the routine for reading the HDF5 file
+  * `eis_fit_raster.py`: fits an entire raster, very slow!
+  * `eis_fit_profile.py`: fits a single spectrum
+  
 * 3-EAG: a very early attempt at writing a coherent set of documentation for these python routines.  
 
 It is important to remember that this is "minimum viable example" python software. The primary goal
