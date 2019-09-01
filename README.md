@@ -9,7 +9,9 @@ There are currently three subdirectories
 
 * 1-convert2hdf5: this is the IDL software used to read the level-1 file and write it to HDF5. If
   you're interested in how an HDF5 file is created, look here. Note that we haven't yet included
-  all of the files you'd need to run this software. 
+  all of the files you'd need to run this software. For the FITS files look here
+  
+  [data files](https://github.com/hpwarren/pyEIS-test-data)
   
 * 2-pyEIS: this directory contains an example HDF5 file and some software routines for reading and
   displaying the data. Routines for fitting the data using a port of MPFIT to python are also
@@ -25,7 +27,8 @@ There are currently three subdirectories
   * `eis_mpfit.py`: really mpfit.py by Sergey Koposov, which is based on IDL code by Craig
     Markwardt.
   
-* 3-EAG: a very early attempt at writing a coherent set of documentation for these python routines.  
+* 3-EAG: a very early attempt at writing a coherent set of documentation for these python
+    routines. To start, take a look at eag.pdf. 
 
 It is important to remember that this is "minimum viable example" python software. The primary goal
-is to get feedback.
+is to try something out and get feedback.
