@@ -1,0 +1,45 @@
+
+\chapter{Prepping the Data and Writing the HDF5 Files}
+
+The level-0 fits files were prepped using the IDL routine \verb+eis_prep+ available via SolarSoft
+\citep{Freeland:1998} and the following options
+\begin{verbatim}
+  default = 1
+  save = 1
+  quiet = 1
+  retain = 1
+  photons = 1
+  refill = 0
+\end{verbatim}
+There are 400,000+ EIS level-0 files at present, but on a multi-core machine using the IDL bridge
+all of the files can be prepped in under 24 hours. We have prepped all of the available EIS files
+and saved them to standard fits files in the usual way. Some important points
+\begin{enumerate}
+  
+\item[\bf units:] As mentioned previously, the units for the output in these level-1 files is
+  ``photon events'' or ``counts.''  This means that the statistical uncertainty can be estimated as
+  $\sqrt{N}$. Technically the read noise should be added in, but it becomes significant only at
+  very low flux levels (1--2 counts).
+
+\item[\bf retain:] Note that the retain keywords preserves negative values. One of the jobs of
+  \verb+eis_prep+ is to remove the pedestal from the CCD readout and any time dependent dark
+  current. Since the spectral windows are generally narrow, the estimate of the background can be
+  too high and the subtracted intensities of the continuum can be negative. This will be dealt with
+  during the fitting.
+
+\item[\bf refill:] The warm pixel problem complicates the fitting of EIS line profiles. As
+  discussed in software note \#13 in SSW, interpolating the values of missing pixels appears to
+  best reproduce the original data. This option is left off during \verb+eis_prep+ so that the
+  level-1 fits file preserves the information on the missing pixels. As discussed below, the
+  interpolation (via the refill option) is done during the read and this data is ultimately written
+  to the HDF5 file. A mask indicating which pixels have been interpolated needs to be added to the
+  HDF5 file.
+  
+\end{enumerate}
+Here is a code snippet related to reading the data by looping over the spectral windows.
+\begin{lstlisting}[language=idl]
+for iwin=0, nwin-1 do begin
+  d = eis_getwindata(eis_level1_filename, iwin, /refill, /quiet)
+  eis_level1_data[iwin] = ptr_new(d)
+endfor
+\end{lstlisting}

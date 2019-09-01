@@ -1,3 +1,14 @@
+# LaTeX stuff
+.aux
+.bbl
+.blg
+.fdb_latexmka
+.fls
+.log
+.out
+.toc
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
