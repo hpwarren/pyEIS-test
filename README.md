@@ -21,6 +21,7 @@ There are currently three subdirectories
   * `eis_read_raster.py`: is the routine for reading the HDF5 file
   * `eis_fit_raster.py`: fits an entire raster, very slow!
   * `eis_fit_profile.py`: fits a single spectrum
+  * `eis_mpfit.py`: really mpfit.py by Sergey Koposov
   
 * 3-EAG: a very early attempt at writing a coherent set of documentation for these python routines.  
 
