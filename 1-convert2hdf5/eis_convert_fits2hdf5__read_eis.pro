@@ -35,7 +35,7 @@ pro eis_convert_fits2hdf5::read_eis
   wininfo = eis_get_wininfo(eis_level0_filename, nwin=nwin)
 
   ;; +
-  ;; now loop over all of the level0 data
+  ;; now loop over all of the level0 data, so slow!
   ;; don't compute wavelength correction here
   ;; -
   eis_level0_data = ptrarr(nwin)
@@ -46,7 +46,7 @@ pro eis_convert_fits2hdf5::read_eis
   endfor
 
   ;; +
-  ;; now loop over all of the level1 data
+  ;; now loop over all of the level1 data, so slow!
   ;; get wavelength correction
   ;; replace missing pixels (need a mask for this)
   ;; -   

@@ -30,7 +30,7 @@ def read_fit(file_fit):
 
 if __name__ == '__main__':
 
-    filename = 'eis_test_fit.fe_12_195_119_1c.fit.h5'
+    filename = 'TEST/eis_test_fit.fe_12_195_119_1c.fit.h5'
     fit = read_fit(filename)
 
     for key in fit.keys():
