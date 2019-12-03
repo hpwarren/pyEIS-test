@@ -2,7 +2,7 @@
 \chapter{Prepping the Data and Writing the HDF5 Files}
 
 The level-0 fits files were prepped using the IDL routine \verb+eis_prep+ available via SolarSoft
-\citep{Freeland:1998} and the following options
+\citep{Freeland:1998} with the following options:
 \begin{verbatim}
   default = 1
   save = 1
@@ -13,16 +13,16 @@ The level-0 fits files were prepped using the IDL routine \verb+eis_prep+ availa
 \end{verbatim}
 There are 400,000+ EIS level-0 files at present, but on a multi-core machine using the IDL bridge
 all of the files can be prepped in under 24 hours. We have prepped all of the available EIS files
-and saved them to standard fits files in the usual way. Some important points
+and saved them to standard fits files in the usual way. Some important points:
 \begin{enumerate}
-  
+
 \item[\bf units:] As mentioned previously, the units for the output in these level-1 files is
   ``photon events'' or ``counts.''  This means that the statistical uncertainty can be estimated as
   $\sqrt{N}$. Technically the read noise should be added in, but it becomes significant only at
   very low flux levels (1--2 counts).
 
-\item[\bf retain:] Note that the retain keywords preserves negative values. One of the jobs of
-  \verb+eis_prep+ is to remove the pedestal from the CCD readout and any time dependent dark
+\item[\bf retain:] Note that the retain keyword preserves negative values. One of the jobs of
+  \verb+eis_prep+ is to remove the pedestal from the CCD readout and any time-dependent dark
   current. Since the spectral windows are generally narrow, the estimate of the background can be
   too high and the subtracted intensities of the continuum can be negative. This will be dealt with
   during the fitting.
@@ -34,7 +34,7 @@ and saved them to standard fits files in the usual way. Some important points
   interpolation (via the refill option) is done during the read and this data is ultimately written
   to the HDF5 file. A mask indicating which pixels have been interpolated needs to be added to the
   HDF5 file.
-  
+
 \end{enumerate}
 Here is a code snippet related to reading the data by looping over the spectral windows.
 \begin{lstlisting}[language=idl]

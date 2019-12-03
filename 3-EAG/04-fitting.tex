@@ -80,7 +80,7 @@ wave   = raster.data['wave']
 corr   = raster.data['wave_corr']
 \end{lstlisting}
 
-Prepping of the data can be handled at various levels of sophistication at the user's discretion, however, at a minimum it should include handling bad values\sidenote{Negative values are a result of the background subtraction.} in the raster, correcting for the wavelength offsets\sidenote{This is from thermal shifts in the CCD and normal degradation of being in space over time?...}, and computing the errors on the intensities\sidenote{The square root of the counts is a good first-order approximation.}.
+Prepping of the data can be handled at various levels of sophistication at the user's discretion, however, at a minimum it should include handling bad values\sidenote{Negative values are a result of the background subtraction.} in the raster, correcting for the wavelength offsets\sidenote{From thermal drift over the  orbit.}, and computing the errors on the intensities\sidenote{The square root of the counts is a good first-order approximation.}.
 
 \begin{lstlisting}
 # get dimensions
@@ -114,7 +114,7 @@ from eis_read_fit import read_fit
 # fit profile
 parinfo  = template.parinfo
 template = template.template
-fit      = eis_fit_raster(wave, ints, errs, template, parinfo)
+fit = eis_fit_raster(wave, ints, errs, template, parinfo)
 
 # save fit output
 fit = fit.fit
@@ -151,7 +151,16 @@ width        float64      (512, 87, 2)
 The above steps are illustrated in the example routine \verb+eis_fit_example.py+, which produces a plot like the one shown below.
 
 \begin{figure}[t]
-  \centerline{\includegraphics[scale=0.25]{figures/fit_example.pdf}}
-  \caption{Fit Examples.}
+  \centerline{\includegraphics[clip,width=0.8\linewidth,bb=0 0 750 737]{figures/fit_example.pdf}}
+  \centerline{\includegraphics[clip,width=0.8\linewidth,bb=750 0 1500 737]{figures/fit_example.pdf}}  
+  \caption{Example line profile fits. The top two panels show the raster formed by summing over the
+    profile (left) and fitting each profile (right). The bottom panels show fits to four
+    \ion{Fe}{12} 195.119\,\AA\ line profiles.}
   \label{fig:fit_example}
 \end{figure}
+
+As a final note about the fitting routines, there's also a parallelized version for fitting the raster that uses the Python Multiprocessing module \sidenote{This uses a pool of processes and parallelizes over the rasters so that each sub-process gets a raster position.}. When using the parallel version, an extra argument can be passed to the function to specify the number of processes to use (default=4) as in the below example. You can also check out the example in \verb+eis_fit_example_parallel.py+.
+
+\begin{lstlisting}
+fit = eis_fit_raster_parallel(wave, ints, errs, template, parinfo, ncpu=8)
+\end{lstlisting}

@@ -87,10 +87,10 @@ plt.show()
   \label{fig:spectrum}
 \end{marginfigure}
 
-We usually don't want to know about the numbering of the data windows. It's more natural to want to
-read the data corresponding to a particularly wavelength. The data in the \verb+wininfo+ group
-contains the max and min wavelengths for each data window and allows us to map from wavelength to
-window number.
+We usually don't care about the numbering of the data windows. It's more natural to want to read
+the data corresponding to a particularly wavelength. The data in the \verb+wininfo+ group contains
+the max and min wavelengths for each data window and allows us to map from wavelength to window
+number.
 \begin{lstlisting}
 f_head = h5py.File(file_head, 'r')
 nwin, = f_head['/wininfo/nwin']
@@ -163,6 +163,7 @@ raster and display individual line profiles
 
 \begin{figure}[t]
   \centerline{\includegraphics[clip,width=\linewidth]{figures/eis_display_window.pdf}}
-  \caption{An example }
+  \caption{An example interactive plot showing the raster and the line profile at the selected
+    position.}
   \label{fig:matplotlib}
 \end{figure}
