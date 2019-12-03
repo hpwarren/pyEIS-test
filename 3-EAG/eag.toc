@@ -1,6 +1,0 @@
-\contentsline {chapter}{Introduction}{5}{chapter*.1}
-\contentsline {chapter}{Prepping the Data and Writing the HDF5 Files}{7}{chapter*.2}
-\contentsline {chapter}{Reading the HDF5 Level-1 Files}{9}{chapter*.3}
-\contentsline {chapter}{Fitting the Spectra}{13}{chapter*.4}
-\contentsline {chapter}{Bibliography}{17}{chapter*.5}
-\contentsfinish 
