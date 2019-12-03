@@ -17,7 +17,7 @@ This document describes the basic elements of EIS data analysis using new HDF5 l
 new routines written in the Python programming language. At the beginning of the Hinode mission the
 strategy was to release unprocessed level-0 FITS files and software routines written in IDL for
 processing these files into a format that could be used for data analysis. Additionally, all of
-routines for computing ancillary information, such as the offsets of the detectors or the magnitude
+the routines for computing ancillary information, such as the offsets of the detectors or the magnitude
 of the instrumental broadening, were all written in IDL. Unfortunately, IDL is an expensive,
 proprietary language, little used outside of solar physics. Python, in contrast, is a free, open
 source language that has grown dramatically in popularity since the launch of Hinode, making it an
@@ -41,13 +41,11 @@ There are several other design decisions that merit some explanation
     that is well supported by both IDL and Python. The most attractive feature for this application
     is that data is stored in a self-documenting, directory-like tree structure instead of binary
     table extensions.
-  \item The data is processed from raw ``data numbers'' to ``photon events'' or
-    ``counts''. Conversion to absolute units is done using a calibration curve in the header
-    file, and several different curves can be considered.
+  \item The data is processed from raw ``data numbers'' to ``photon events'' or ``counts''. The
+    default behavior of \verb+eis_prep+ is to convert to calibrated units. With the HDF5 files
+    conversion to absolute units is done using a calibration curve in the header file, and several
+    different calibration curves can be considered.
 \end{itemize}
 
 The remaining chapters of this document describe the contents of the level-1 files and illustrate
 how to use these files for data analysis in Python.
-
-
-
